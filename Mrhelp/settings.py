@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'USER':'root',
         'PASSWORD':'root',
-        'NAME': 'course',
+        'NAME': 'apphelp',
         'OPTIONS': {
          "init_command": "SET foreign_key_checks = 0;",
      },
