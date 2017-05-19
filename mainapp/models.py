@@ -28,7 +28,7 @@ class Users(models.Model):
     )
     status = models.IntegerField(choices=status_choice, null=True)
 
-    head_image = models.ImageField(null=True,upload_to="static/head/")
+    head_image = models.ImageField(null=True,blank=True,upload_to="static/head/")
 
     token = models.CharField(max_length=100,null=True)
     token_expire_time = models.DateTimeField(null=True)
@@ -93,12 +93,12 @@ class Mission(models.Model):
     status = models.IntegerField(choices=status_choice)
 
     # naming strategy : 1~6_missionid
-    description_picture1 = models.ImageField(null=True, upload_to="static/mission/")
-    description_picture2 = models.ImageField(null=True, upload_to="static/mission/")
-    description_picture3 = models.ImageField(null=True, upload_to="static/mission/")
-    description_picture4 = models.ImageField(null=True, upload_to="static/mission/")
-    description_picture5 = models.ImageField(null=True, upload_to="static/mission/")
-    description_picture6 = models.ImageField(null=True, upload_to="static/mission/")
+    description_picture1 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
+    description_picture2 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
+    description_picture3 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
+    description_picture4 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
+    description_picture5 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
+    description_picture6 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
 
     owner_userid = models.ForeignKey(Users)
     receiver_userid = models.IntegerField(null=True) # no allow to use foreign key here to User again
