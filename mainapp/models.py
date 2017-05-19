@@ -10,32 +10,32 @@ class Users(models.Model):
     userid = models.AutoField(primary_key=True)
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200, null=True)
-    address = models.TextField(null=True)
-    realname = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    address = models.TextField(null=True,blank=True)
+    realname = models.CharField(max_length=200, null=True,blank=True)
 
     zone_choice = (
         (1,'86'),
         (2,'852'),
     )
-    zone = models.IntegerField(choices=zone_choice, null=True)
-    mobile = models.CharField(max_length=200, null=True)
+    zone = models.IntegerField(choices=zone_choice, null=True,blank=True)
+    mobile = models.CharField(max_length=200, null=True,blank=True)
 
     status_choice = (
         (1,'normal'),
         (2,'vip'),
         (3,'ban')
     )
-    status = models.IntegerField(choices=status_choice, null=True)
+    status = models.IntegerField(choices=status_choice, null=True,blank=True)
 
     head_image = models.ImageField(null=True,blank=True,upload_to="static/head/")
 
-    token = models.CharField(max_length=100,null=True)
-    token_expire_time = models.DateTimeField(null=True)
-    register_time = models.DateTimeField(null=True)
-    register_ip = models.CharField(max_length=100,null=True)
-    last_login_time = models.DateTimeField(null=True)
-    last_login_ip = models.CharField(max_length=100,null=True)
+    token = models.CharField(max_length=100,null=True,blank=True)
+    token_expire_time = models.DateTimeField(null=True,blank=True)
+    register_time = models.DateTimeField(null=True,blank=True)
+    register_ip = models.CharField(max_length=100,null=True,blank=True)
+    last_login_time = models.DateTimeField(null=True,blank=True)
+    last_login_ip = models.CharField(max_length=100,null=True,blank=True)
 
     def __str__(self):
         return self.username
@@ -59,17 +59,17 @@ class ThirdPlatformAccount(models.Model):
 class Mission(models.Model):
     missionid = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
-    context = models.TextField(null=True)
+    context = models.TextField(null=True,blank=True)
     create_time = models.DateTimeField
-    close_time = models.DateTimeField(null=True)
-    reward = models.IntegerField(null=True)
+    close_time = models.DateTimeField(null=True,blank=True)
+    reward = models.IntegerField(null=True,blank=True)
     payment_choice = (
         (1,'cash'),
         (2,'wechat'),
         (3,'alipay'),
         (4,'paypal'),
     )
-    payment_method = models.IntegerField(choices=payment_choice,null=True)
+    payment_method = models.IntegerField(choices=payment_choice,null=True,blank=True)
     type_choice =(
         (1,'comprehensive/others'),
         (2,'borrow/share'),
@@ -101,7 +101,7 @@ class Mission(models.Model):
     description_picture6 = models.ImageField(null=True,blank=True, upload_to="static/mission/")
 
     owner_userid = models.ForeignKey(Users)
-    receiver_userid = models.IntegerField(null=True) # no allow to use foreign key here to User again
+    receiver_userid = models.IntegerField(null=True,blank=True) # no allow to use foreign key here to User again
 
     def __str__(self):
         return str(self.missionid) + " " + self.title
