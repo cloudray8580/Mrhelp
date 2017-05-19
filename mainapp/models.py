@@ -60,7 +60,7 @@ class Mission(models.Model):
     missionid = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
     context = models.TextField(null=True,blank=True)
-    create_time = models.DateTimeField
+    create_time = models.DateTimeField()
     close_time = models.DateTimeField(null=True,blank=True)
     reward = models.IntegerField(null=True,blank=True)
     payment_choice = (
