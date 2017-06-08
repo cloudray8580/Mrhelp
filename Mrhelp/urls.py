@@ -19,6 +19,7 @@ from django.conf.urls import include
 
 from rest_framework import routers
 from mainapp import views
+from rest_framework_docs import *
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -28,4 +29,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/' , include("mainapp.urls")),
     url(r'^admin/', admin.site.urls),
+    url(r'^docs/', include('rest_framework_docs.urls')),
 ]
