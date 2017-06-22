@@ -22,12 +22,12 @@ from mainapp import views
 from rest_framework_docs import *
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+# router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    #url(r'^', include(router.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/' , include("mainapp.urls")),
-    url(r'^admin/', admin.site.urls),
     url(r'^docs/', include('rest_framework_docs.urls')),
 ]

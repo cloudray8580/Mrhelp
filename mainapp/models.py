@@ -10,7 +10,7 @@ class Users(models.Model):
     userid = models.AutoField(primary_key=True)
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, unique=True, null=False, blank=True)
     address = models.TextField(null=True,blank=True)
     realname = models.CharField(max_length=200, null=True,blank=True)
 
