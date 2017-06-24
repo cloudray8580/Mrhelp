@@ -23,3 +23,16 @@ class MissionSerializer(serializers.ModelSerializer):
                   'reward','payment_method','type','status','description_picture1',
                   'description_picture2','description_picture3','description_picture4',
                   'description_picture5','description_picture6','owner_userid','receiver_userid')
+
+class ActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Activity
+        fields = ('activityid','title','context','create_time','close_time',
+                  'activity_time','status','description_picture1',
+                  'description_picture2','description_picture3','description_picture4',
+                  'description_picture5','description_picture6','creater_userid')
+
+class AdvertisementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advertisement
+        fields = ('advid','update_time','title','description_picture','type','missionid','activityid')

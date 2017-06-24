@@ -116,3 +116,44 @@ class Chat(models.Model):
 
     def __str__(self):
         return str(self.chatid) + " " + self.content
+
+class Activity(models.Model):
+    activityid = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=50)
+    context = models.TextField(null=True, blank=True)
+    create_time = models.DateTimeField()
+    close_time = models.DateTimeField(null=True, blank=True)
+    activity_time = models.DateTimeField(null=True, blank=True)
+    status_choice = (
+        (1, 'on'),  # waiting some one to apply
+        (2, 'close'),  # quota is full or time is passed
+    )
+    status = models.IntegerField(choices=status_choice)
+
+    # naming strategy : 1~6_activityid
+    description_picture1 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
+    description_picture2 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
+    description_picture3 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
+    description_picture4 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
+    description_picture5 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
+    description_picture6 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
+
+    creater_userid = models.ForeignKey(Users)
+
+class Advertisement(models.Model):
+    advid = models.AutoField(primary_key=True)
+    update_time = models.DateTimeField(null=True,blank=True)
+    title = models.CharField(max_length=50)
+    # naming strategy : 1~6_advid
+    description_picture = models.ImageField(null=True, blank=True, upload_to="static/homeadv/")
+    type_choice = (
+        (1, 'mission'),
+        (2, 'activity'),
+        (3, 'others')
+    )
+    type = models.IntegerField(choices=type_choice)
+
+    missionid = models.ForeignKey(Mission)
+    activityid = models.ForeignKey(Activity)
+
+
