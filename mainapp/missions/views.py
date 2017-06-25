@@ -7,22 +7,25 @@ from mainapp.models import Mission
 from mainapp.serializers import MissionSerializer
 from rest_framework import generics
 
+
+from rest_framework.authentication import SessionAuthentication,BasicAuthentication
+from rest_framework.decorators import authentication_classes
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+
+    def enforce_csrf(self, request):
+        return  # To not perform the csrf check previously happening
+
 class MissionList(generics.ListCreateAPIView):
+    authenticaiton_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
 
 class MissionDetail(generics.RetrieveUpdateDestroyAPIView):
+    authenticaiton_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
 
-# from rest_framework.authentication import SessionAuthentication,BasicAuthentication
-# from rest_framework.decorators import authentication_classes
-# class CsrfExemptSessionAuthentication(SessionAuthentication):
-#
-#     def enforce_csrf(self, request):
-#         return  # To not perform the csrf check previously happening
-#
-#
+
 # @api_view(['GET','POST'])
 # @csrf_exempt
 # @authentication_classes((CsrfExemptSessionAuthentication, BasicAuthentication))
