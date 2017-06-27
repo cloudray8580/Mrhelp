@@ -153,7 +153,7 @@ class Advertisement(models.Model):
     )
     type = models.IntegerField(choices=type_choice)
 
-    missionid = models.ForeignKey(Mission)
-    activityid = models.ForeignKey(Activity)
+    missionid = models.ForeignKey(Mission, null=True, blank=True)
+    activityid = models.ForeignKey(Activity,null=True, blank=True)
 
 
