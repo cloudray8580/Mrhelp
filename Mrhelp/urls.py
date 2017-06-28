@@ -24,10 +24,13 @@ from rest_framework_docs import *
 router = routers.DefaultRouter()
 # router.register(r'users', views.UserViewSet)
 
+from rest_framework.documentation import include_docs_urls
+
 urlpatterns = [
     #url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/' , include("mainapp.urls")),
-    url(r'^docs/', include('rest_framework_docs.urls')),
+    #url(r'^docs/', include('rest_framework_docs.urls')),
+    url(r'^docs/', include_docs_urls(title='Mrhelp API'))
 ]

@@ -7,5 +7,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.AdvertisementList.as_view()),
-    url(r'^(?P<activityid>[0-9]+)$',views.AdvertisementDetail.as_view())
+    url(r'^(?P<pk>[0-9]+)/$',views.AdvertisementDetail.as_view())
 ]

@@ -130,6 +130,13 @@ class Activity(models.Model):
     )
     status = models.IntegerField(choices=status_choice)
 
+    type_choice = (
+        (1, 'activity'),
+        (2, 'news'),
+        (3, 'market')
+    )
+    type = models.IntegerField(choices=type_choice)
+
     # naming strategy : 1~6_activityid
     description_picture1 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
     description_picture2 = models.ImageField(null=True, blank=True, upload_to="static/activity/")
@@ -149,7 +156,9 @@ class Advertisement(models.Model):
     type_choice = (
         (1, 'mission'),
         (2, 'activity'),
-        (3, 'others')
+        (3, 'news'),
+        (4, 'market'),
+        (5, 'others')
     )
     type = models.IntegerField(choices=type_choice)
 

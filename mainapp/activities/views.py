@@ -14,10 +14,15 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
     def enforce_csrf(self, request):
         return  # To not perform the csrf check previously happening
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+
 class ActivityList(generics.ListCreateAPIView):
     authenticaiton_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('type',)
 
 class ActivityDetail(generics.RetrieveUpdateDestroyAPIView):
     authenticaiton_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
