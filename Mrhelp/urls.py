@@ -25,6 +25,8 @@ router = routers.DefaultRouter()
 # router.register(r'users', views.UserViewSet)
 
 from rest_framework.documentation import include_docs_urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     #url(r'^', include(router.urls)),
@@ -33,4 +35,5 @@ urlpatterns = [
     url(r'^api/' , include("mainapp.urls")),
     #url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^docs/', include_docs_urls(title='Mrhelp API'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+  # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
