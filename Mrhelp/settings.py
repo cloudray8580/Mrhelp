@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'rest_framework',
     #'rest_framework_docs',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
