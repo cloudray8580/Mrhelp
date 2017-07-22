@@ -37,7 +37,7 @@ class Users(models.Model):
     last_login_time = models.DateTimeField(null=True,blank=True)
     last_login_ip = models.CharField(max_length=100,null=True,blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.username
 
 class ThirdPlatformAccount(models.Model):
@@ -103,6 +103,9 @@ class Mission(models.Model):
     owner_userid = models.ForeignKey(Users)
     receiver_userid = models.IntegerField(null=True,blank=True) # no allow to use foreign key here to User again
 
+    def __unicode__(self):
+        return self.title
+
     def __str__(self):
         return str(self.missionid) + " " + self.title
 
@@ -147,6 +150,9 @@ class Activity(models.Model):
 
     creater_userid = models.ForeignKey(Users)
 
+    def __unicode__(self):
+        return self.title
+
 class Advertisement(models.Model):
     advid = models.AutoField(primary_key=True)
     update_time = models.DateTimeField(null=True,blank=True)
@@ -164,5 +170,8 @@ class Advertisement(models.Model):
 
     missionid = models.ForeignKey(Mission, null=True, blank=True)
     activityid = models.ForeignKey(Activity,null=True, blank=True)
+
+    def __unicode__(self):
+        return self.advid
 
 
